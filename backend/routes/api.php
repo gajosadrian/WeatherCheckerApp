@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/get-weather', [WeatherController::class, 'getWeather']);
+Route::get('/get-stats', [WeatherController::class, 'getStats']);
 Route::get('/weather-searches', [WeatherSearchController::class, 'index']);

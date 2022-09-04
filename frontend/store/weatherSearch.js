@@ -7,4 +7,7 @@ export const actions = {
       },
     })
   },
+  async getStats({ commit }) {
+    return await this.$axios.$get('/api/get-stats')
+  },
 }

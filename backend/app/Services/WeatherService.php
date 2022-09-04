@@ -39,4 +39,19 @@ class WeatherService
             'lng' => $weatherData['coord']['lon'],
         ]);
     }
+
+    public function getStats(): array
+    {
+        $minTemperature = $this->weatherSearchService->getMinTemperature();
+        $maxTemperature = $this->weatherSearchService->getMaxTemperature();
+        $avgTemperature = $this->weatherSearchService->getAverageTemperature();
+        $total = $this->weatherSearchService->getTotal();
+
+        return [
+            'minTemperature' => $minTemperature,
+            'maxTemperature' => $maxTemperature,
+            'avgTemperature' => $avgTemperature,
+            'total' => $total,
+        ];
+    }
 }

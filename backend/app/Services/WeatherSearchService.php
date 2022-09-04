@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\WeatherSearch;
+use Illuminate\Support\Facades\DB;
 
 class WeatherSearchService
 {
@@ -41,5 +42,33 @@ class WeatherSearchService
         ]);
 
         return $weatherSearch;
+    }
+
+    public function getMinTemperature(): float
+    {
+        $table = (new WeatherSearch)->getTable();
+        $val = DB::table($table)->selectRaw('MIN(temperature) as val')->first()->val;
+        return (float)$val;
+    }
+
+    public function getMaxTemperature(): float
+    {
+        $table = (new WeatherSearch)->getTable();
+        $val = DB::table($table)->selectRaw('MAX(temperature) as val')->first()->val;
+        return (float)$val;
+    }
+
+    public function getAverageTemperature(): float
+    {
+        $table = (new WeatherSearch)->getTable();
+        $val = DB::table($table)->selectRaw('AVG(temperature) as val')->first()->val;
+        return (float)$val;
+    }
+
+    public function getTotal(): int
+    {
+        $table = (new WeatherSearch)->getTable();
+        $val = DB::table($table)->selectRaw('COUNT(temperature) as val')->first()->val;
+        return (float)$val;
     }
 }

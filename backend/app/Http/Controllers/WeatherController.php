@@ -29,4 +29,11 @@ class WeatherController extends Controller
 
         return response()->json($weather);
     }
+
+    public function getStats()
+    {
+        $stats = $this->weatherService->getStats();
+
+        return response()->json($stats);
+    }
 }

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-card class="mb-3">
+      <WeatherStats v-if="stats" :stats="stats"/>
+    </b-card>
     <b-table
       :current-page="page"
       :fields="fields"
@@ -29,6 +32,7 @@ export default {
   name: "WeatherHistory",
   data() {
     return {
+      stats: null,
       page: 1,
       total: 0,
       perPage: 10,
@@ -41,6 +45,9 @@ export default {
       ],
     }
   },
+  created() {
+    this.fetchStats()
+  },
   methods: {
     async fetchWeatherSearches(ctx) {
       const weatherSearches = await this.$store.dispatch('weatherSearch/get', {
@@ -52,6 +59,9 @@ export default {
       this.total = weatherSearches.total
 
       return weatherSearches.data
+    },
+    async fetchStats() {
+      this.stats = await this.$store.dispatch('weatherSearch/getStats')
     },
   },
 }
