@@ -1,11 +1,11 @@
 <template>
   <b-container class="mt-3">
-    <WeatherMap/>
+    <WeatherHistory/>
   </b-container>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: "SearchHistoryPage"
 }
 </script>
